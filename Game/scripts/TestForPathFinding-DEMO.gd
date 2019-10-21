@@ -21,3 +21,9 @@ func _on_Timer_timeout():
 	line_2d.points = new_path
 	character.path = new_path
 	print("Chamou o Timer")
+
+func stop_timer():
+	$Timer.stop()
+
+func start_timer():
+	$Timer.start()

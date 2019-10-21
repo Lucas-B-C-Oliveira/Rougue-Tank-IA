@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="New Game Project"
+config/name="Rougue-Tank-IA"
 run/main_scene="res://Scenes/test_area.tscn"
 config/icon="res://icon.png"
 
