@@ -39,7 +39,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 128, 0, 128, 128 )
 
-[node name="body" type="RigidBody2D" parent="tile5"]
+[node name="body" type="StaticBody2D" parent="tile5"]
 collision_layer = 4
 collision_mask = 0
 
@@ -79,8 +79,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 256, 0, 128, 128 )
 
-[node name="body" type="RigidBody2D" parent="tile9"]
-editor/display_folded = true
+[node name="body" type="StaticBody2D" parent="tile9"]
 collision_layer = 4
 collision_mask = 0
 
