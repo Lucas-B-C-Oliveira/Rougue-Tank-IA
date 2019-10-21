@@ -1,0 +1,330 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://scripts/turret_01.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Inimigos/rogue_tank_sprites_2/towerDefense_tile228.png" type="Texture" id=2]
+[ext_resource path="res://scripts/cannon.gd" type="Script" id=3]
+[ext_resource path="res://sprites/Inimigos/rogue_tank_sprites_2/towerDefense_tile250.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Inimigos/rogue_tank_sprites_2/towerDefense_tile298.png" type="Texture" id=5]
+[ext_resource path="res://sprites/smokeWhite1.png" type="Texture" id=6]
+[ext_resource path="res://samples/projectil_hit.wav" type="AudioStream" id=7]
+[ext_resource path="res://scripts/HOME.gd" type="Script" id=8]
+[ext_resource path="res://sprites/Inimigos/rogue_tank_sprites_2/towerDefense_tile249.png" type="Texture" id=9]
+[ext_resource path="res://samples/barrel_explosion.wav" type="AudioStream" id=10]
+[ext_resource path="res://scripts/weak_spot.gd" type="Script" id=11]
+[ext_resource path="res://sprites/explosion5.png" type="Texture" id=12]
+[ext_resource path="res://sprites/explosionSmoke1.png" type="Texture" id=13]
+[ext_resource path="res://sprites/explosion2.png" type="Texture" id=14]
+[ext_resource path="res://sprites/explosion3.png" type="Texture" id=15]
+[ext_resource path="res://sprites/explosion4.png" type="Texture" id=16]
+[ext_resource path="res://sprites/Inimigos/rogue_tank_sprites_2/towerDefense_tile021.png" type="Texture" id=17]
+[ext_resource path="res://sprites/Inimigos/rogue_tank_sprites_2/towerDefense_tile020.png" type="Texture" id=18]
+[ext_resource path="res://samples/tank_explosion.wav" type="AudioStream" id=19]
+[ext_resource path="res://Scenes/hp_bar.tscn" type="PackedScene" id=20]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 25.92
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.180392 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.47903, 0.4791 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+angular_velocity = -2.98294e+038
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Animation" id=7]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("cannon/sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.535887, 1 ),
+"update": 0,
+"values": [ Vector2( -22.22, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cannon/fire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "fire"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( -41.5723, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0 ), 0.0, 2.44735, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 0.000169926
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.35
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 40.0
+
+[sub_resource type="Animation" id=16]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 12 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.610574, 0.610574 ), Vector2( 3.31992, 3.31992 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../soot:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="turret_01" type="StaticBody2D" groups=[
+"radar_entity",
+]]
+collision_layer = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="poly" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -23.1276, -17.949, 22.9222, -18.0028, 22.9944, 10.0058, 15.055, 18.0242, -14.9045, 18.0604, -22.9722, 9.99267 )
+
+[node name="HMG" type="Area2D" parent="."]
+editor/display_folded = true
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="sprite" type="Sprite" parent="HMG"]
+rotation = 1.5708
+texture = ExtResource( 4 )
+offset = Vector2( 0.0754395, -9.59186 )
+
+[node name="shape" type="CollisionShape2D" parent="HMG"]
+shape = SubResource( 1 )
+
+[node name="sight" type="RayCast2D" parent="HMG"]
+cast_to = Vector2( 40, 0 )
+
+[node name="fire" type="Node2D" parent="HMG"]
+editor/display_folded = true
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 43.0246, -40.9854 )
+rotation = 1.5708
+
+[node name="fire1" type="Sprite" parent="HMG/fire"]
+position = Vector2( 34.0468, -3.44617 )
+texture = ExtResource( 5 )
+
+[node name="fire2" type="Sprite" parent="HMG/fire"]
+position = Vector2( 47.7086, -3.44617 )
+texture = ExtResource( 5 )
+
+[node name="smoke" type="Particles2D" parent="HMG"]
+position = Vector2( 42.5085, 0 )
+emitting = false
+amount = 4
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 6 )
+
+[node name="shoot_timer" type="Timer" parent="HMG"]
+wait_time = 0.3
+
+[node name="cannon_anim" type="AnimationPlayer" parent="HMG"]
+anims/shoot = SubResource( 7 )
+
+[node name="stream_shoot" type="AudioStreamPlayer" parent="HMG"]
+stream = ExtResource( 7 )
+bus = "fx"
+
+[node name="HOME" type="Area2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 8 )
+
+[node name="sprite" type="Sprite" parent="HOME"]
+rotation = 1.5708
+texture = ExtResource( 9 )
+offset = Vector2( -0.0246964, -12.1731 )
+
+[node name="fire_timer" type="Timer" parent="HOME"]
+wait_time = 2.0
+
+[node name="barrel" type="Position2D" parent="HOME"]
+position = Vector2( 55.2863, 0 )
+
+[node name="fire" type="AudioStreamPlayer" parent="HOME"]
+stream = ExtResource( 10 )
+
+[node name="anim" type="AnimationPlayer" parent="HOME"]
+anims/fire = SubResource( 8 )
+
+[node name="smoke" type="Particles2D" parent="HOME"]
+position = Vector2( 35.3558, 0 )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+randomness = 0.3
+process_material = SubResource( 13 )
+texture = ExtResource( 6 )
+
+[node name="sensor" type="Area2D" parent="."]
+editor/display_folded = true
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="sensor"]
+shape = SubResource( 14 )
+
+[node name="weak_spot" type="Area2D" parent="."]
+editor/display_folded = true
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 11 )
+
+[node name="shape" type="CollisionPolygon2D" parent="weak_spot"]
+polygon = PoolVector2Array( 37.8732, 12.1664, 37.3566, -11.7248, 23.4093, -11.983, 23.0219, -18.311, 13.5946, -22.7018, -11.0715, -22.3144, -22.8234, -18.4401, -23.4691, 10.1002, -13.6543, 21.8521, 13.078, 21.4646, 20.3099, 12.9413 )
+
+[node name="explosion" type="Node2D" parent="."]
+editor/display_folded = true
+visible = false
+
+[node name="sprite" type="Sprite" parent="explosion"]
+scale = Vector2( 3.31992, 3.31992 )
+texture = ExtResource( 12 )
+
+[node name="anim" type="AnimationPlayer" parent="explosion"]
+anims/explode = SubResource( 16 )
+
+[node name="soot" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( 0.918686, -1.3061 )
+scale = Vector2( 1.89006, 1.89006 )
+texture = ExtResource( 17 )
+
+[node name="soot" type="Sprite" parent="soot"]
+position = Vector2( -0.351038, 0.0802495 )
+texture = ExtResource( 18 )
+
+[node name="stream" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="stream_hit" type="AudioStreamPlayer" parent="stream"]
+stream = ExtResource( 7 )
+bus = "fx"
+
+[node name="explosion" type="AudioStreamPlayer" parent="stream"]
+stream = ExtResource( 19 )
+bus = "fx"
+
+[node name="hp_bar_node" type="Node2D" parent="."]
+editor/display_folded = true
+z_index = 100
+
+[node name="hp_bar" parent="hp_bar_node" instance=ExtResource( 20 )]
+margin_left = -30.5547
+margin_top = -47.5378
+margin_right = 118.445
+margin_bottom = -31.5378
+rect_scale = Vector2( 0.416079, 0.433333 )
+[connection signal="timeout" from="HMG/shoot_timer" to="HMG" method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="HOME/fire_timer" to="HOME" method="_on_fire_timer_timeout"]
+[connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
+[connection signal="body_exited" from="sensor" to="." method="_on_sensor_body_exited"]
+[connection signal="damage" from="weak_spot" to="." method="_on_weak_spot_damage"]
