@@ -34,6 +34,7 @@ func move_along_path(distance : float) -> void:
 		distance -= distance_to_next
 		start_point = path[0]
 		path.remove(0)
+	
 
 func set_path(value : PoolVector2Array) -> void:
 	
@@ -47,3 +48,8 @@ func set_path(value : PoolVector2Array) -> void:
 
 
 
+
+
+func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
+	##get_tree().
+	pass
