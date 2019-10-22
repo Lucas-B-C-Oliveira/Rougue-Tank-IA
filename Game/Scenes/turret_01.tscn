@@ -118,7 +118,7 @@ color_ramp = SubResource( 10 )
 [sub_resource type="CircleShape2D" id=14]
 radius = 40.0
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=15]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
@@ -235,6 +235,7 @@ bus = "fx"
 
 [node name="HOME" type="Area2D" parent="."]
 editor/display_folded = true
+visible = false
 script = ExtResource( 8 )
 
 [node name="sprite" type="Sprite" parent="HOME"]
@@ -289,7 +290,7 @@ scale = Vector2( 3.31992, 3.31992 )
 texture = ExtResource( 12 )
 
 [node name="anim" type="AnimationPlayer" parent="explosion"]
-anims/explode = SubResource( 16 )
+anims/explode = SubResource( 15 )
 
 [node name="soot" type="Sprite" parent="."]
 editor/display_folded = true

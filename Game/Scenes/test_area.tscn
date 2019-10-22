@@ -108,7 +108,6 @@ position = Vector2( 616.017, 485.711 )
 position = Vector2( 171.473, 387.484 )
 start_rot = 11.111
 sensor_radius = 144.444
-type = 0
 life = 10
 
 [node name="turret_02" parent="turrets" instance=ExtResource( 8 )]

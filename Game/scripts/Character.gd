@@ -53,10 +53,11 @@ func set_path(value : PoolVector2Array) -> void:
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	
 	if body.is_in_group("player"):
-		get_parent().stop_timer()
+		get_parent().start_timer()
 
 
 
 func _on_Area2D_body_shape_exited(body_id, body, body_shape, area_shape):
 		if body.is_in_group("player"):
-			get_parent().start_timer()
+			get_parent().stop_timer()
+

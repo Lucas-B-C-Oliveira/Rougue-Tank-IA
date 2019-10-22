@@ -7,6 +7,9 @@ export(float, 0 , 360) var start_rot = 0.0 setget set_start_rot
 export(float, 100 , 1000) var sensor_radius = 40 setget set_sensor_radius
 export(int, 'HMG', 'HOME')  var type = 0 setget set_type
 
+var speed : = 400.0
+var path : = PoolVector2Array() setget set_path
+
 
 
 var first_draw = true
@@ -22,8 +25,8 @@ signal player_entered(n)
 signal player_exited(n)
 
 
-func _ready():
-	pass 
+func _ready() -> void:
+	set_process(false)
 	
 func _draw():
 	if dead:
@@ -58,9 +61,14 @@ func _draw():
 	draw_circle_arc(Vector2() , $sensor/shape.shape.radius, 0 , 360 ,  Color(1,0,0,.5))
 	
 
-func _process(delta):
+func _process(delta: float) -> void:
+	
 	if Engine.editor_hint:
 		return
+	
+	var move_distance : = speed * delta
+	move_along_path(move_distance)
+
 	
 	if bodys.size():
 		var target = cannon.get_target()
@@ -89,6 +97,39 @@ func _on_sensor_body_exited(body):
 		bodys.remove(index)
 	emit_signal("player_exited" , bodys.size())
 	update()
+
+func move_along_path(distance : float) -> void:
+	
+	var start_point : = position
+	
+	for i in range(path.size()):
+		
+		var distance_to_next : = start_point.distance_to(path[0])
+		
+		if distance <= distance_to_next and distance >= 0.0:
+			
+			position = start_point.linear_interpolate(path[0] , distance / distance_to_next)
+			break
+		
+		elif distance < 0.0:
+			
+			position = path[0]
+			set_process(false)
+			break
+		
+		distance -= distance_to_next
+		start_point = path[0]
+		path.remove(0)
+	
+
+func set_path(value : PoolVector2Array) -> void:
+	
+	path = value
+	
+	if value.size() == 0:
+		return
+	
+	set_process(true)
 
 
 func set_start_rot(val):
