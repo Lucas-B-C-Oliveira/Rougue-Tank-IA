@@ -32,7 +32,6 @@ region_enabled = true
 region_rect = Rect2( 0, 256, 128, 128 )
 
 [node name="tile5" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 128, 0 )
 texture = ExtResource( 1 )
 centered = false
